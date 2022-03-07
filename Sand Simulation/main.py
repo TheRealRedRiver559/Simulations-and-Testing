@@ -35,6 +35,8 @@ while running:
                 grid.current_particle = particles.wall
             elif event.key == pygame.K_4:
                 grid.current_particle = particles.blank
+            elif event.key == pygame.K_c:
+                grid.cursor_draw = not grid.cursor_draw
             elif event.key == pygame.K_q:
                 grid.resetGrid()
             elif event.key == pygame.K_SPACE:
