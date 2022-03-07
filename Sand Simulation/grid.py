@@ -1,5 +1,4 @@
 import random
-from xml.dom import INDEX_SIZE_ERR
 import pygame
 from particles import Particles
 
@@ -10,7 +9,7 @@ class Grid:
         self.current_particle = None
         self.current_color = None
         self.reset = False
-        self.cursor_draw = True #Test to increase cursor size
+        self.cursor_draw = False #Test to increase cursor size
         self.particles = particles
         self.rows = settings.rows
         self.columns = settings.columns
@@ -28,11 +27,14 @@ class Grid:
     
     #this goes through each row and each column spot on the grid checking and updating them according to their 'physic_type'
     def simulateParticles(self):
-        for x in range(self.rows):
-            for y in range(self.columns):
-                for obj in self.particle_list:
-                    if  self.current_grid[x][y] == obj.particle_id:
-                        self.updateParticle(obj, x, y)
+        for x in range(1, self.rows-1):
+            for y in range(1, self.columns-1):
+                if self.current_grid[x][y] == 0:
+                    pass
+                else:
+                    for obj in self.particle_list:
+                        if  self.current_grid[x][y] == obj.particle_id:
+                            self.updateParticle(obj, x, y)
 
     def updateParticle(self, particle, x, y):
         match particle.physic_type:
@@ -43,7 +45,7 @@ class Grid:
 
     #water is very broken...
     def update_movableSolid(self, particle, x, y):
-        if self.future_grid[x][y+1] == 0:
+        if self.current_grid[x][y+1] == 0:
             self.future_grid[x][y] =  0
             self.future_grid[x][y+1] = particle.particle_id
 
@@ -67,6 +69,9 @@ class Grid:
         if self.future_grid[x][y+1] == 0:
             self.future_grid[x][y] =  0
             self.future_grid[x][y+1] = particle.particle_id
+        elif self.future_grid[x][y-1] == 1:
+            self.future_grid[x][y] =  1
+            self.future_grid[x][y-1] = particle.particle_id
         elif self.future_grid[x+1][y+1] == 0 and self.future_grid[x-1][y+1] == 0:
 
             self.future_grid[x][y] = 0
@@ -90,14 +95,13 @@ class Grid:
                 self.future_grid[x+1][y] = particle.particle_id
             else:
                 self.future_grid[x-1][y] = particle.particle_id
-
+        elif self.future_grid[x+1][y] == 0:
+            self.future_grid[x][y] = 0
+            self.future_grid[x+1][y] = particle.particle_id
         elif self.future_grid[x-1][y] == 0:
             self.future_grid[x][y] = 0
             self.future_grid[x-1][y] = particle.particle_id
         
-        elif self.future_grid[x+1][y] == 0:
-            self.future_grid[x][y] = 0
-            self.future_grid[x+1][y] = particle.particle_id
 
     def draw_particles(self):
         for x in range(1, self.rows-1):
@@ -116,13 +120,11 @@ class Grid:
 
                 return
             if self.cursor_draw:
-                for width in range(5):
-                    for height in range(5):
+                for width in range(10):
+                    for height in range(10):
                         try:
-                            self.future_grid[x-width][y+width] = (self.current_particle.particle_id)
-                        except IndexError:
+                            self.future_grid[x+width][y+height] = (self.current_particle.particle_id)
+                        except Exception:
                             pass
             else:
                 self.future_grid[x][y] = (self.current_particle.particle_id)
-
-                
