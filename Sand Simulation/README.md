@@ -1,3 +1,5 @@
+For Python 3.10
+
 -Particles / Elements-
 Controls
 <li> Sand = 1
@@ -6,4 +8,4 @@ Controls
      <li> Erase = 4
        <li> Reset Grid = q
          <li> Pause = space
-           
+          <li>c = small / big cursor
