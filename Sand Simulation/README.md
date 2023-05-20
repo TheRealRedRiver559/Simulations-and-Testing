@@ -7,12 +7,15 @@ For Python 3.9
 -Particles / Elements-
 Controls
 <li> Sand = 1
- <li> Water = 2
-   <li> Wall = 3
-     <li> Erase = 4
-       <li> Reset Grid = q
-         <li> Pause = space
-          <li>c = small / big cursor
+<li> Rock = 2
+<li> Water = 3
+<li> Iron = 4
+<li> Fire = 5
+<li> Thermite = 6
+<li> Liquid Nitrogen = 7
+ 
+<li> Pause/Un-pause = space
+         
 
 ![unknown](https://github.com/TheRealRedRiver559/Simulations-and-Testing/assets/80642468/a473a3c7-aa02-4ea4-b853-e736105d8dc5)
 
