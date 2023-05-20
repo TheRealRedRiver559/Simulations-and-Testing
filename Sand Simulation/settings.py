@@ -1,12 +1,5 @@
-class Settings:
-    WIDTH = 800
-    HEIGHT = 800
-    SIZE = (WIDTH, HEIGHT)
-
-    MAX_FPS = 100
-
-    CELL_SIZE = 5 #cell size in pixels
-
-    window = None
-    columns = HEIGHT // CELL_SIZE
-    rows = WIDTH // CELL_SIZE
+cell_size = 10
+width, height = 1200, 800
+grid_height, grid_width = height//cell_size, width//cell_size
+grid = [[0 for _ in range(grid_width)] for _ in range(grid_height)]
+events = {}
