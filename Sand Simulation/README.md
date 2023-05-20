@@ -1,5 +1,7 @@
 Run the main.py file to get started
 
+(Yes, this is a very bad read me file / guide, I will update it later when I have more working code and documentation)
+
 For Python 3.9
 
 -Particles / Elements-
