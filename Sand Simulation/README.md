@@ -1,4 +1,6 @@
-For Python 3.10
+Run the main.py file to get started
+
+For Python 3.9
 
 -Particles / Elements-
 Controls
